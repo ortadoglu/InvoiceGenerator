@@ -1,0 +1,14 @@
+.ProductManager {
+    background: white;
+    margin: 3px 10px 20px;
+    border: solid 1px lightgray;
+    height: 100%;    
+}
+
+.ProductManager .ReactTable {
+    font-size: 13px;
+}
+
+.Selector {
+    padding: 10px 5px;
+}

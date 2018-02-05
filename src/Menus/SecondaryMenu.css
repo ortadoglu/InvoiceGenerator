@@ -1,0 +1,22 @@
+.Second-Header__item  a {
+    color: inherit;
+    cursor: auto;
+    text-decoration: none;
+}
+  
+.Second-Header__item {
+    padding: 8px 15px;
+}
+  
+.SecondaryTopMenu {
+    display: flex;
+    font-size: 13px;
+    font-weight: 400;
+    background: white;
+}
+
+.Second-Header--selected {
+    color: #0974b3;
+    font-weight: 700;
+    padding: 8px 13px;
+} 

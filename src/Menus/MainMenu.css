@@ -1,0 +1,38 @@
+.MainTopMenu {
+  background-color: #0974b3;
+  color: white;
+
+  display: flex;
+  justify-content: space-between;
+
+  font-size: 22px;
+  font-weight: 200;
+  font-family: 'Open sans';
+  line-height: 135%;
+}
+
+.Main__items{
+  display: flex;
+}
+
+.Header-title {
+  padding: 6px 15px;
+  font-size: 18px;
+}
+
+.Header-item {
+  border-left: solid 1px white;
+  padding: 7px 15px;
+}
+
+.Header-item a {
+  color: inherit;
+  cursor: auto;
+  text-decoration: none;
+}
+
+
+.LoginBox {
+  color: lightgreen;
+  padding: 6px 15px;
+}
