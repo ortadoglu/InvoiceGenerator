@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Grid from './Grid'
-import Selector from './Selector'
+import Grid from '../Components/Grid'
+import Selector from '../Components/Selector'
 
 import './ProductManager.css';
 
@@ -21,8 +21,7 @@ class ProductManager extends Component {
 			},
 			{
 				Header: 'Name',
-				accessor: 'Name',
-				Cell: props => <span className='number'>{props.value}</span>
+				accessor: 'Name'
 			},
 			{
 				Header: 'Description',
@@ -117,12 +116,33 @@ class ProductManager extends Component {
       Value: 874,
       ValueIncVAT: 874
     },
-  
+    {
+      Description: 'Handcrafted wood chair',
+      Id: 12,
+      Name: 'Chair',
+      TaxGroup: {
+        TaxValue: 0,
+        Id: 2,
+      },
+      Value: 1230,
+      ValueIncVAT: 1230
+    },
+    {
+      Description: 'Handcrafted redwood chair',
+      Id: 31,
+      Name: 'Chair',
+      TaxGroup: {
+        TaxValue: 0,
+        Id: 2,
+      },
+      Value: 1400,
+      ValueIncVAT: 1400
+    },
   ]
 
     return (
       <div className="ProductManager">
-       <Selector fields={columns}/>
+       <Selector fields={columns} label="Add another product"/>
        <Grid data={data} columns={columns}/>
       </div>
     );

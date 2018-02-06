@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import './CustomerManager.css';
 
+import Grid from '../Components/Grid'
+import Selector from '../Components/Selector'
 
-import ReactTable from 'react-table'
-import 'react-table/react-table.css'
-
-
+import { stressData } from './stressdata';
 
 
 class CustomerManager extends Component {
@@ -15,136 +14,56 @@ class CustomerManager extends Component {
   }
 
 
-
-
-
-
-
   render() {
-    const data = [{
-      Description: 'Big screen TV.',
-      Id: 26,
-      Name: 'Genereic TV',
-      TaxGroup: {
-        TaxValue: 25,
-        Id: 1,
-      },
-      Value: 1455,
-      ValueIncVAT: 1600
-    },
-    {
-      Description: 'The new and best product from Apple',
-      Id: 20,
-      Name: 'Ipad',
-      TaxGroup: {
-        TaxValue: 25,
-        Id: 1,
-      },
-      Value: 500,
-      ValueIncVAT:4000
-    },
-    {
-      Description: 'JUST SK8',
-      Id: 1,
-      Name: 'Roller blades',
-      TaxGroup: {
-        TaxValue: 25,
-        Id: 1,
-      },
-      Value: 100,
-      ValueIncVAT: 125
-    },
-    {
-      Description: 'This ball is rounder!',
-      Id: 2,
-      Name: 'Ball',
-      TaxGroup: {
-        TaxValue:250,
-        Id: 1,
-      },
-      Value: 200,
-      ValueIncVAT: 250
-    },
-    {
-      Description: 'A small drone designed for kids',
-      Id: 126,
-      Name: 'Quadcopter',
-      TaxGroup: {
-        TaxValue: 0,
-        Id: 2,
-      },
-      Value: 100,
-      ValueIncVAT: 100
-    },
-    {
-      Description: 'Handcrafted steel chair',
-      Id: 11,
-      Name: 'Chair',
-      TaxGroup: {
-        TaxValue: 0,
-        Id: 2,
-      },
-      Value: 874,
-      ValueIncVAT: 874
-    },
+    const data = stressData;
+
   
-  ]
+
 
 
     const columns = [
       {
         Header: 'Id',
         accessor: 'Id',
-        Cell: props => <span className='number'>{props.value}</span>, // Custom cell components!,
         width: 100
       },
       {
         Header: 'Name',
         accessor: 'Name',
-        Cell: props => <span className='number'>{props.value}</span> // Custom cell components!
       },
       {
-        Header: 'Description',
-        accessor: 'Description',
-        width: 400
+        Header: 'Company',
+        accessor: 'Company',
       }, 
       {
-        id: 'taxId', // Required because our accessor is not a string
-        Header: 'Tax id',
-        accessor: d => d.TaxGroup.Id, // Custom value accessors!
-        width: 100
+        Header: 'Email',
+        accessor: 'Email',
+        width: 200
       },
       {
-        id: 'taxValue', // Required because our accessor is not a string
-        Header: 'Tax value',
-        accessor: d => d.TaxGroup.TaxValue,
-        width: 100
+        Header: 'Phone Number',
+        accessor: 'Phone Number',
+        width: 200
       },
       {
-        Header: props => <span>Value</span>, // Custom header components!
-        accessor: 'Value'
-
+        Header: 'Address',
+        accessor: 'Address'
       },
       {
-        Header: props => <span>ValueIncVAT</span>, // Custom header components!
-        accessor: 'ValueIncVAT'
+        Header: 'Zip code',
+        accessor: 'Zip code'
+      },   
+      {
+        Header: 'Country',
+        accessor: 'Country'
+      },]
 
-      }]
-
-    return (
-      <div className="CustomerManager">
-        <ReactTable
-          data={data}
-          columns={columns}
-          filterable
-          defaultFilterMethod={(filter, row) =>
-            String(row[filter.id]).startsWith(filter.value)}
-            defaultPageSize={10}
-
-        />
-        <div onClick={() => this.writeUserData('ceva', 'cevasadsa', 3, 2)}>click me!</div>
-      </div>
-    );
+      return (
+        <div className="CustomerManager">
+         <Selector fields={columns} label="Add another customer"/>
+         <Grid data={data} columns={columns}/>
+        </div>
+      );
   }
 }
 

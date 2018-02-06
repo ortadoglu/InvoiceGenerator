@@ -1,10 +1,12 @@
 .react-grid-layout {
     position: relative;
     transition: height 200ms ease;
+    width: 1200px;
   }
   .react-grid-item {
     transition: all 200ms ease;
     transition-property: left, top;
+    border: dotted 1px lightskyblue;
   }
   .react-grid-item.cssTransforms {
     transition-property: transform;

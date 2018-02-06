@@ -3,10 +3,6 @@ import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 
 class Grid extends Component {
-	constructor(props) {
-		super(props);
-	}
-
 	render() {
 		return (
 			<ReactTable
@@ -15,7 +11,7 @@ class Grid extends Component {
 				filterable
 				defaultFilterMethod={(filter, row) =>
 					String(row[filter.id]).startsWith(filter.value)}
-				defaultPageSize={10}
+				defaultPageSize={15}
 				getTdProps={(state, rowInfo, column, instance) => {
 					return {
 						onClick: (e, handleOriginal) => {

@@ -1,0 +1,11 @@
+.ProductCard {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px dotted grey;
+    width: 100%;
+}
+
+.ProductCard__item {
+    margin: 0px 10px;
+    width:100px;
+}

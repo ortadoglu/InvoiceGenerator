@@ -1,0 +1,14 @@
+.Invoicing {
+    display: flex;
+    padding: 10px;
+}
+
+.GridController {
+    padding-left: 10px;
+}
+
+.CustomerSelector, .ProductSelector {
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 200px;
+}

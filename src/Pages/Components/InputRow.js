@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 
 class InputRow extends Component {
-  constructor(props) {
-    super(props);
+  handleClick() {
+
   }
 
   render() {
@@ -16,8 +15,9 @@ class InputRow extends Component {
       <div className="InputRow">
 
         {this.props.fields.map(function (field, index) {
-          return <TextField key={index} floatingLabelText={field.Header} />;
+          return <TextField className="RowField" key={index} floatingLabelText={field.Header} />;
         })}
+        <RaisedButton primary label="Save" fullWidth={true} onClick={this.handleClick} />
       </div>
     );
   }
