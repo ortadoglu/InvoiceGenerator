@@ -227,6 +227,8 @@ export const stressData = [{"Id":"1000","Name":"Nicholas","Email":"nlopez0@yahoo
 {"Name":"Marie","Email":"mwoods6a@github.io","Phone Number":"62-(550)832-6587","Address":"52571 Brickson Park Lane"},
 ];
 
+export const defaultUser ={ "Name": "Mircea Pienar", "Email": "mircea.pienar@gmail.com", "Phone Number": "48-(265)190-9055", "Address": "Campionilor nr. 5", "Country": "Romania", "Company": "Azets" };
+
 export const products = [{
     Description: 'Big screen TV.',
     Id: 26,

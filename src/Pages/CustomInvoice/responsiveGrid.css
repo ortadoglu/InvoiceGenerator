@@ -6,7 +6,7 @@
   .react-grid-item {
     transition: all 200ms ease;
     transition-property: left, top;
-    border: dotted 1px lightskyblue;
+    border: dotted 1px lightgray;
   }
   .react-grid-item.cssTransforms {
     transition-property: transform;
@@ -71,4 +71,3 @@
     box-sizing: border-box;
     cursor: se-resize;
   }
-  

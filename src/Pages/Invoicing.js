@@ -1,59 +1,45 @@
 import React, { Component } from 'react';
-import InvoiceGrid from './CustomInvoice/responsiveGrid.js';
-import './CustomInvoice/Invoice.css';
-import DropDownMenu from 'material-ui/DropDownMenu';
-import MenuItem from 'material-ui/MenuItem';
-import Paper from 'material-ui/Paper';
 
-import { stressData, products } from './CustomerManager/stressdata';
+import ProductRowGenerator from './CustomInvoice/ProductRowGenerator';
+import ClientSelector from './CustomInvoice/ClientSelector';
+import InvoiceGrid from './CustomInvoice/responsiveGrid.js';
+
+import { stressData, products, defaultUser } from './CustomerManager/stressdata';
+import './CustomInvoice/Invoice.css';
+import Paper from 'material-ui/Paper';
+import RaisedButton from 'material-ui/RaisedButton';
 
 class Invoicing extends Component {
   constructor(props) {
     super(props);
     this.state = {
       customers: stressData,
-      prod: products,
-      user: { "Name": "Mircea Pienar", "Email": "mircea.pienar@gmail.com", "Phone Number": "48-(265)190-9055", "Address": "Campionilor nr. 5", "Country": "Romania", "Company": "Azets" },
+      products: products,
+      user: defaultUser,
       customerIndex: 0,
-      productIndex: 0,
+      invoicedProducts: [],
     };
+    this.selectCustomer = this.selectCustomer.bind(this);
+    this.addProduct = this.addProduct.bind(this);
   }
-  handleCustomerChange = (event, index, value) => this.setState({ customerIndex: value });
-  handleProductChange = (event, index, value) => this.setState({ productIndex: value });
+  selectCustomer = (value) => this.setState({ customerIndex: value });
+
+  addProduct (product, quantity) {
+    this.setState({ invoicedProducts:  [...this.state.invoicedProducts ,{product, quantity}]});
+  }
 
   render() {
 
     return (
       <div className="Invoicing">
         <Paper zDepth={2} children={
-          <InvoiceGrid customer={this.state.customers[this.state.customerIndex]} products={this.state.prod} user={this.state.user} />
+          <InvoiceGrid customer={this.state.customers[this.state.customerIndex]} products={this.state.invoicedProducts} user={this.state.user} />
         } />
         <div className="GridController">
-          <Paper zDepth={2} children={
-            <div className="CustomerSelector">
-              <div>Select Customer</div>
-              <DropDownMenu maxHeight={300} value={this.state.customerIndex} onChange={this.handleCustomerChange}>
-                {this.state.customers.map((customer, index) => {
-                  return (
-                    <MenuItem value={index} primaryText={customer.Name} />
-                  );
-                })}
-              </DropDownMenu>
-            </div>
-          } />
-          <Paper zDepth={2} children={
-            <div className="ProductSelector">
-              <div>Add product</div>
-              <DropDownMenu maxHeight={300} value={this.state.productIndex} onChange={this.handleProductChange}>
-                {this.state.prod.map((product, index) => {
-                  return (
-                    <MenuItem value={index} primaryText={product.Name} />
-                  );
-                })}
-              </DropDownMenu>
-            </div>
-          } />
-
+          <ClientSelector customers={this.state.customers} selectCustomer={this.selectCustomer}/>
+          <ProductRowGenerator products={this.state.products} addProduct={this.addProduct} />
+          <RaisedButton primary backgroundColor="#a4c639"
+              label="Save to PDF" />
         </div>
       </div>
     );

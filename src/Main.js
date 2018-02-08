@@ -11,7 +11,6 @@ class Main extends Component {
     return (
       <div className="Main">
         <Switch>
-          {/* do sometyhing for home */}
           <Route path='/archive' component={Archive} />
           <Route path='/invoicing' component={Invoicing} />
           <Route path='/customer' component={CustomerManager} />

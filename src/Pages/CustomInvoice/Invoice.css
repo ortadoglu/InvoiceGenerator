@@ -1,6 +1,11 @@
 .Invoicing {
     display: flex;
     padding: 10px;
+    height: auto;
+}
+
+.CustomerSelector > div, .ProductSelector > div {
+    width: 100%;
 }
 
 .GridController {
@@ -11,4 +16,30 @@
     padding: 10px;
     margin-bottom: 10px;
     width: 200px;
+}
+
+.ProductCard {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px dotted grey;
+    width: 100%;
+    min-height: 25px;
+}
+
+.ProductCard__item {
+    margin: 0px 10px;
+    width:100px;
+    text-align: left;
+}
+
+.ProductHolder {
+    height: 100%;
+    overflow: hidden;
+}
+
+.Border {
+    background-color: grey;
+    height: 1px !important;
+    top:15px;
 }
