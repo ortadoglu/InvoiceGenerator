@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import Main from './Main.js';
-import Header from './Header.js';
+import Main from './Pages/Components/Main'
+import Header from './Pages/Components/Header';
 
 import * as firebase from 'firebase';
 

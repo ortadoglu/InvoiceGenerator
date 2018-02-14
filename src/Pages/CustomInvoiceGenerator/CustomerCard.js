@@ -11,17 +11,17 @@ class CustomerCard extends Component {
       <div className="CustomerCard">
         <List >
           <ListItem
-            leftIcon={<ActionAccount />}
+            rightIcon={<ActionAccount />}
             primaryText={this.props.customer.Name}
             secondaryText={this.props.customer.Company}
           />
           <ListItem
-            leftIcon={<ActionHome />}
+            rightIcon={<ActionHome />}
             primaryText={this.props.customer.Address}
             secondaryText={this.props.customer.Country}
           />
           <ListItem
-            leftIcon={<CommunicationEmail />}
+            rightIcon={<CommunicationEmail />}
             primaryText={this.props.customer.Email}
           />
         </List>

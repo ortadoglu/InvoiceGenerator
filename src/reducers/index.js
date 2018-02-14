@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux'
 import todos from './todos'
+import products from './products'
 
-const todoApp = combineReducers({
+const invoiceGeneratorApp = combineReducers({
   todos,
+  products,
 
 })
 
-export default todoApp
+export default invoiceGeneratorApp

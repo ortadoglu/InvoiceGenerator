@@ -4,3 +4,11 @@
     border: solid 1px lightgray;
     height: 100%;    
 }
+
+.CustomerManager .ReactTable {
+    font-size: 13px;
+}
+
+.RowField {
+    margin: 0px 10px;
+}

@@ -7,7 +7,8 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { BrowserRouter } from 'react-router-dom';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import reducer from './reducers'
+import reducer from './Reducers'
+import actions from './Actions'
 
 const store = createStore(reducer);
 

@@ -17,8 +17,7 @@ class ProductGenerator extends Component {
 
   handleProductChange = (event, index, value) => this.setState({ productIndex: value });
   handleSliderChange = (event, value) => this.setState({ sliderIndex: value });
-  
-  handleButtonClick = ()=> this.props.addProduct(this.props.products[this.state.productIndex], this.state.sliderIndex);
+  handleButtonClick = () => this.props.addProduct(this.props.products[this.state.productIndex], this.state.sliderIndex);
 
   render() {
     return (
@@ -31,11 +30,11 @@ class ProductGenerator extends Component {
               );
             })}
           </DropDownMenu>
-            <Slider min={0} max={100} step={1} onChange={this.handleSliderChange} />
-            <RaisedButton primary 
-              label={"Add " + + this.state.sliderIndex + " " + this.props.products[this.state.productIndex].Name } 
-              disabled={this.state.sliderIndex === 0} 
-              onClick={this.handleButtonClick}/>
+          <Slider min={0} max={50} step={1} onChange={this.handleSliderChange} />
+          <RaisedButton primary
+            label={"Add " + this.state.sliderIndex + " " + this.props.products[this.state.productIndex].Name}
+            disabled={this.state.sliderIndex === 0}
+            onClick={this.handleButtonClick} />
         </div>
       } />
     );

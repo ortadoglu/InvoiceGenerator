@@ -4,7 +4,7 @@
     height: auto;
 }
 
-.CustomerSelector > div, .ProductSelector > div {
+.CustomerSelector > div, .ProductSelector > div, .PaperButtonHolder > div {
     width: 100%;
 }
 
@@ -16,6 +16,11 @@
     padding: 10px;
     margin-bottom: 10px;
     width: 200px;
+}
+
+.PaperButtonHolder {
+    padding: 10px;
+    margin-bottom: 10px;
 }
 
 .ProductCard {

@@ -1,0 +1,8 @@
+.InputRowButtons {
+    display: flex;
+}
+
+.InputRowButtons > div {
+    flex-grow: 1;
+    padding: 10px;
+}

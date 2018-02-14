@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Archive from './Pages/Archive.js';
-import Invoicing from './Pages/Invoicing.js';
-import CustomerManager from './Pages/CustomerManager/CustomerManager.js';
-import ProductManager from './Pages/ProductManager/ProductManager.js';
+import Archive from '../Archive/Archive';
+import Invoicing from '../CustomInvoiceGenerator';
+import CustomerManager from '../CustomerManager/CustomerManager.js';
+import ProductManager from '../ProductManager/ProductManager.js';
 import {Switch, Route} from 'react-router-dom';
 
 
