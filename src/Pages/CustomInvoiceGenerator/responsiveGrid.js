@@ -47,7 +47,7 @@ class MyFirstGrid extends Component {
           <div className="GridItem Border" key="g" data-grid={{ x: 0, y: 0, w: 1, h: 2, static: true }}>
           </div>
           <div key={4} data-grid={{x: 6, y: 2, w: 3, h: 5, static: false}}>
-           <img src ={mainLogo} /> 
+           <img src ={mainLogo} alt={"Logo missing"}/> 
         </div> 
         </ReactGridLayout>
       } />

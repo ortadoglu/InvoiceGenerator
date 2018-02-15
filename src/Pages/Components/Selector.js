@@ -15,8 +15,10 @@ class Selector extends Component {
   }
 
   addItem = (item) => {
-    console.log(item);
-    this.setState({ open: !this.state.open });
+    if (item.Id !== undefined) {
+      this.setState({ open: !this.state.open });
+      this.props.updateHandler(item);
+    }
   }
 
   render() {
@@ -25,7 +27,7 @@ class Selector extends Component {
         <RaisedButton primary label={this.props.label} fullWidth={true} onClick={() => this.handleToggle()} />
         {this.state.open &&
           <div>
-            <InputRow fields={this.props.fields} handleCancel={this.handleToggle}  handleSave={this.addItem} />
+            <InputRow fields={this.props.fields} handleCancel={this.handleToggle} handleSave={this.addItem} />
           </div>}
       </div>
     );

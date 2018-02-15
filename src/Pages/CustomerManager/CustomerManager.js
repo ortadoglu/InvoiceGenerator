@@ -4,18 +4,54 @@ import './CustomerManager.css';
 import Grid from '../Components/Grid'
 import Selector from '../Components/Selector'
 
-import { stressData } from './stressdata';
+import * as firebase from 'firebase';
 
 
 class CustomerManager extends Component {
   constructor(props) {
     super(props);
-    this.state = { items: [] };
+    this.state = { customers: [] };
+    this.updateHandler = this.updateHandler.bind(this);
   }
 
+  componentDidMount() {
+    this.populateState();
+  }
+
+  populateState() {
+    let tempThis = this;
+    firebase.database()
+      .ref(`tokens/NhqydOhq3ncaTII4MPpZpfu1cVI2/customers/`)
+      .once('value')
+      .then(function (usersSnapshot) {
+        var userData = usersSnapshot.val();
+        tempThis.setState({
+          customers: Object.keys(userData).map((id) => {
+            userData[id]["Id"] = id;
+            return userData[id]
+          })
+        })
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+  updateHandler(item) {
+
+    firebase.database().ref('tokens/NhqydOhq3ncaTII4MPpZpfu1cVI2/customers/' + item.Id).set({
+      Name: (item.Name || ""),
+      Email: (item.Email || ""),
+      PhoneNumber: (item["Phone Number"] || ""),
+      Address: (item.Address || ""),
+      Country: (item.Country || ""),
+      Company: (item.Company || "")
+    })
+
+    this.populateState();
+  }
 
   render() {
-    const data = stressData;
 
     const columns = [
       {
@@ -57,7 +93,7 @@ class CustomerManager extends Component {
       return (
         <div className="CustomerManager">
          <Selector fields={columns} label="Add another customer"/>
-         <Grid data={data} columns={columns}/>
+         <Grid data={this.state.customers} columns={columns}/>
         </div>
       );
   }

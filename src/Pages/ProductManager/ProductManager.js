@@ -3,147 +3,97 @@ import Grid from '../Components/Grid'
 import Selector from '../Components/Selector'
 
 import './ProductManager.css';
+import * as firebase from 'firebase';
 
 
 class ProductManager extends Component {
   constructor(props) {
     super(props);
-    this.state = { items: [] };
+    this.state = { products: [] };
+    this.updateHandler = this.updateHandler.bind(this);
+  }
+
+  componentDidMount() {
+    this.populateState();
+  }
+
+  populateState() {
+    let tempThis = this;
+    firebase.database()
+      .ref(`users/`)
+      .once('value')
+      .then(function (usersSnapshot) {
+        var userData = usersSnapshot.val();
+        tempThis.setState({
+          products: Object.keys(userData).map((id) => {
+            userData[id]["Id"] = id;
+            userData[id]["ValueIncVAT"] = userData[id]["Value"] * (1+ userData[id]["TaxGroup"]["TaxValue"]/100);
+            return userData[id]
+          })
+        })
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+  updateHandler(item) {
+    firebase.database().ref('users/' + item.Id).set({
+      Description: (item.Description || ""),
+      Name: (item.Name || ""),
+      TaxGroup: {
+        TaxValue: (item["Tax value"] || ""),
+        Id: (item["Tax id"] || ""),
+      },
+      Value: (item.Value || ""),
+    });
+    this.populateState();
   }
 
   render() {
     const columns = [
-			{
-				Header: 'Id',
-				accessor: 'Id',
-				Cell: props => <span className='number'>{props.value}</span>,
-				width: 100
-			},
-			{
-				Header: 'Name',
-				accessor: 'Name'
-			},
-			{
-				Header: 'Description',
-				accessor: 'Description',
-				width: 400
-			},
-			{
-				id: 'taxId',
-				Header: 'Tax id',
-				accessor: d => d.TaxGroup.Id,
-				width: 100
-			},
-			{
-				id: 'taxValue',
-				Header: 'Tax value',
-				accessor: d => d.TaxGroup.TaxValue,
-				width: 100
-			},
-			{
-				Header: 'Value',
-				accessor: 'Value'
+      {
+        Header: 'Id',
+        accessor: 'Id',
+        Cell: props => <span className='number'>{props.value}</span>,
+        width: 100
+      },
+      {
+        Header: 'Name',
+        accessor: 'Name'
+      },
+      {
+        Header: 'Description',
+        accessor: 'Description',
+        width: 400
+      },
+      {
+        id: 'taxId',
+        Header: 'Tax id',
+        accessor: d => d.TaxGroup.Id,
+        width: 100
+      },
+      {
+        id: 'taxValue',
+        Header: 'Tax value',
+        accessor: d => d.TaxGroup.TaxValue,
+        width: 100
+      },
+      {
+        Header: 'Value',
+        accessor: 'Value'
 
-			},
-			{
-				Header: 'ValueIncVAT',
-				accessor: 'ValueIncVAT'
+      },
+      {
+        Header: 'ValueIncVAT',
+        accessor: 'ValueIncVAT'
 
-			}]
-    const data = [{
-      Description: 'Big screen TV.',
-      Id: 26,
-      Name: 'Genereic TV',
-      TaxGroup: {
-        TaxValue: 25,
-        Id: 1,
-      },
-      Value: 1455,
-      ValueIncVAT: 1600
-    },
-    {
-      Description: 'The new and best product from Apple',
-      Id: 20,
-      Name: 'Ipad',
-      TaxGroup: {
-        TaxValue: 25,
-        Id: 1,
-      },
-      Value: 500,
-      ValueIncVAT:4000
-    },
-    {
-      Description: 'JUST SK8',
-      Id: 1,
-      Name: 'Roller blades',
-      TaxGroup: {
-        TaxValue: 25,
-        Id: 1,
-      },
-      Value: 100,
-      ValueIncVAT: 125
-    },
-    {
-      Description: 'This ball is rounder!',
-      Id: 2,
-      Name: 'Ball',
-      TaxGroup: {
-        TaxValue:250,
-        Id: 1,
-      },
-      Value: 200,
-      ValueIncVAT: 250
-    },
-    {
-      Description: 'A small drone designed for kids',
-      Id: 126,
-      Name: 'Quadcopter',
-      TaxGroup: {
-        TaxValue: 0,
-        Id: 2,
-      },
-      Value: 100,
-      ValueIncVAT: 100
-    },
-    {
-      Description: 'Handcrafted steel chair',
-      Id: 11,
-      Name: 'Chair',
-      TaxGroup: {
-        TaxValue: 0,
-        Id: 2,
-      },
-      Value: 874,
-      ValueIncVAT: 874
-    },
-    {
-      Description: 'Handcrafted wood chair',
-      Id: 12,
-      Name: 'Chair',
-      TaxGroup: {
-        TaxValue: 0,
-        Id: 2,
-      },
-      Value: 1230,
-      ValueIncVAT: 1230
-    },
-    {
-      Description: 'Handcrafted redwood chair',
-      Id: 31,
-      Name: 'Chair',
-      TaxGroup: {
-        TaxValue: 0,
-        Id: 2,
-      },
-      Value: 1400,
-      ValueIncVAT: 1400
-    },
-  ]
+      }]
 
     return (
       <div className="ProductManager">
-       <Selector fields={columns} label="Add another product"/>
-       <Grid data={data} columns={columns}/>
+        <Selector fields={columns} label="Add another product" updateHandler={this.updateHandler} />
+        <Grid data={this.state.products} columns={columns} />
       </div>
     );
   }

@@ -1,4 +1,4 @@
-import { stressData, products, defaultUser } from '../Pages/CustomerManager/stressdata';
+import {  products } from '../Pages/CustomerManager/stressdata';
 //import _ from lodas
 
 const allPproducts = (state = products, action) => {

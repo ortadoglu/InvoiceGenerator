@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import SecondaryTopMenu from './Menus/SecondaryMenu';
-import MainTopMenu from './Menus/MainMenu';
+import SecondaryTopMenu from './SecondaryMenu';
+import MainTopMenu from './MainMenu';
 
 
 class Header extends Component {

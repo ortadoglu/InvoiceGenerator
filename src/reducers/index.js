@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux'
-import todos from './todos'
+import customers from './customers'
 import products from './products'
+import { loginState } from './filter';
 
 const invoiceGeneratorApp = combineReducers({
-  todos,
+  customers,
   products,
+  loginState
 
 })
 

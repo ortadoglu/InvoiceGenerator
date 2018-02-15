@@ -4,7 +4,7 @@ class Archive extends Component {
   render() {
     return (
       <div className="Archive">
-          Archive
+          No saved invoices
       </div>
     );
   }

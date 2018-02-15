@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './MainMenu.css';
+import LoginContainer from '../../../Containers/LoginButtonContainer'
+
 
 class MainTopMenu extends Component {
   render() {
@@ -11,7 +13,7 @@ class MainTopMenu extends Component {
           <div className="Header-item"><Link exact="true" to='/customer'>Customer invoice</Link></div>
           <div className="Header-item"><Link exact="true" to='/management'>Management</Link></div> */}
         </div>
-        <div className="LoginBox">Login box</div>
+        <LoginContainer/>
       </div>
     );
   }
